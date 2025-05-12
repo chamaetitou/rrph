@@ -1,0 +1,41 @@
+<odoo>
+    <record id="view_serial_label_tree" model="ir.ui.view">
+        <field name="name">serial.label.tree</field>
+        <field name="model">serial.label</field>
+        <field name="arch" type="xml">
+            <list string="Serial Labels">
+                <field name="name"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_serial_label_form" model="ir.ui.view">
+        <field name="name">serial.label.form</field>
+        <field name="model">serial.label</field>
+        <field name="arch" type="xml">
+            <form string="Serial Label">
+                <header>
+                    <field name="status" widget="statusbar" options="{'clickable': False}"/>
+                    <button name="action_print_label" type="object" string="Imprimer" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" readonly="status == 'consumed'"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_serial_label" model="ir.actions.act_window">
+        <field name="name">Serial Labels</field>
+        <field name="res_model">serial.label</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_serial_label_root" name="Serial Labels"/>
+    <menuitem id="menu_serial_label" name="Serial Labels" parent="menu_serial_label_root" action="action_serial_label"/>
+
+    
+</odoo>

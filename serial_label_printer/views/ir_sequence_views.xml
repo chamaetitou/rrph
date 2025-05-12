@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_sequence_form_inherit" model="ir.ui.view">
+        <field name="name">sequence.form.inherit</field>
+        <field name="model">ir.sequence</field>
+        <field name="inherit_id" ref="base.ir_sequence_form"/>
+        <field name="arch" type="xml">
+            <field name="active" position="after">
+                <field name="is_label_code"/>
+             </field>
+           
+        </field>
+    </record>
+</odoo>

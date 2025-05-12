@@ -1,0 +1,37 @@
+<odoo>
+
+    <record id="view_serial_label_wizard_form" model="ir.ui.view">
+        <field name="name">serial.label.wizard.form</field>
+        <field name="model">serial.label.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate Serial Labels">
+                <group>
+                    <field name="label_type" domain="[('is_label_code', '=', True)]"/>
+                    <field name="number_of_labels"/>
+                </group>
+                <footer>
+                    <button string="Generate" type="object" name="generate_labels" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_serial_label_wizard" model="ir.actions.act_window">
+        <field name="name">Generate Serial Labels</field>
+        <field name="res_model">serial.label.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field> 
+    </record>
+
+
+    <menuitem id="menu_wizard_serial_label_root" name="Print Serial Labels"/>
+
+
+    <menuitem id="menu_serial_label_wizard"
+              name="Generate Labels"
+              parent="menu_wizard_serial_label_root"
+              action="action_serial_label_wizard"
+              sequence="10"/>
+</odoo>

@@ -1,0 +1,11 @@
+<odoo>
+    <record id="action_serial_label_report" model="ir.actions.report">
+        <field name="name">Serial Labels</field>
+        <field name="model">serial.label</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">serial_label_printer.serial_label_template</field>
+        <field name="report_file">serial_label_printer.serial_label_template</field>
+        <field name="attachment_use">False</field>
+        <field name="binding_model_id" ref="model_serial_label"/>
+    </record>
+</odoo>

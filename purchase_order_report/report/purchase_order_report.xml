@@ -1,0 +1,81 @@
+<odoo>
+    <data>
+        <record id="action_report_purchase_order" model="ir.actions.report">
+            <field name="name">Bon de Commande RRPH</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">purchase_order_report.report_purchase_order_template</field>
+            <field name="report_file">purchase_order_report.report_purchase_order_template</field>
+            <field name="attachment_use">False</field>
+            <field name="binding_model_id" ref="model_purchase_order"/>
+        </record>
+        <record id="action_report_consultation_letter" model="ir.actions.report">
+            <field name="name">Lettre de consultation</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">purchase_order_report.report_consultation_letter_template</field>
+            <field name="report_file">purchase_order_report.report_consultation_letter_template</field>
+            <field name="attachment_use">False</field>
+            <field name="binding_model_id" ref="model_purchase_order"/>
+        </record>
+
+        <!-- Template du rapport -->
+        <template id="report_purchase_order_template">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Bon de Commande</h2>
+                    <p>Date : <t t-esc="object.date_order"/></p>
+                    <p>Fournisseur : <t t-esc="object.partner_id.name"/></p>
+
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Produit</th>
+                                <th>Quantité</th>
+                                <th>Prix Unitaire (HT)</th>
+                                <th>Total (HT)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="object.order_line" t-as="line">
+                                <td><t t-esc="line.name"/></td>
+                                <td><t t-esc="line.product_qty"/></td>
+                                <td><t t-esc="line.price_unit"/></td>
+                                <td><t t-esc="line.price_subtotal"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+        <!-- Template du rapport consultation letter -->
+        <template id="report_consultation_letter_template">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Bon de Commande</h2>
+                    <p>Date : <t t-esc="object.date_order"/></p>
+                    <p>Fournisseur : <t t-esc="object.partner_id.name"/></p>
+
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Produit</th>
+                                <th>Quantité</th>
+                                <th>Prix Unitaire (HT)</th>
+                                <th>Total (HT)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="object.order_line" t-as="line">
+                                <td><t t-esc="line.name"/></td>
+                                <td><t t-esc="line.product_qty"/></td>
+                                <td><t t-esc="line.price_unit"/></td>
+                                <td><t t-esc="line.price_subtotal"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
