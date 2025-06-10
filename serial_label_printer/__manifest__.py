@@ -14,5 +14,5 @@
         # 'views/ir_sequence_views.xml',
     ],
     'installable': True,
-    'application': True,
+    'application': True, 
 }
